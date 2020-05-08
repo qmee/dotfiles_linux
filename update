@@ -38,11 +38,10 @@ echo "updating zsh completions"
 
 echo "homebrew outdated"
   cd ~/
-  wget https://raw.githubusercontent.com/damonmorgan/environment/master/Brewfile -O ~/Brewfile
+  wget https://raw.githubusercontent.com/qmee/environment/master/BrewfileLinux -O ~/Brewfile
   brew bundle --verbose
   brew update
   brew cleanup
-  brew cask cleanup
   brew outdated
 
 echo "npm outdated"

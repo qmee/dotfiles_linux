@@ -12,7 +12,7 @@ export UPDATE_ZSH_DAYS=3
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins+=(aws cake chruby fasd fzf git grunt heroku hero npm rake-fast vundle)
+plugins+=(aws cake chruby fasd fzf git grunt heroku hero npm rake-fast vundle zsh-z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -25,23 +25,21 @@ precmd_functions+=("chruby_auto")
 unsetopt correct_all
 
 # preferred editor
-export EDITOR='vim'
+export EDITOR='code'
 export BUNDLER_EDITOR='vim'
 
 ### homebrew
-export PATH="/usr/local/sbin:$PATH"
-#coreutils
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-# gopath
-export PATH=$PATH:/usr/local/opt/go/libexec/bin
+export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
+
+### chruby 
+source "/home/linuxbrew/.linuxbrew/share/chruby/chruby.sh"
+
 # zsh-completions
-fpath=(/usr/local/share/zsh-completions $fpath)
-fpath=(~/.zsh/completions $fpath)
-source /usr/local/opt/git-extras/share/git-extras/git-extras-completion.zsh
+FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+source $(brew --prefix)/share/git-extras/git-extras-completion.zsh
 
 # Bundler > 1.5.0
-export BUNDLE_JOBS=$(sysctl -n hw.ncpu)
+export BUNDLE_JOBS=$(nproc)
 
 # GPG
 export GPG_TTY=$(tty)
@@ -49,4 +47,4 @@ export GPG_TTY=$(tty)
 # aliases
 . ~/.zsh/aliases
 
-autoload -U compinit && compinit
+autoload -Uz compinit && compinit

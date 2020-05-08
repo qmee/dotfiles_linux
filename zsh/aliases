@@ -1,7 +1,7 @@
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias localip="ipconfig getifaddr en0"
-alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
+alias localip="ip -br address"
+alias ips="ip -h address"
 
 # ssh
 alias socksoff='networksetup -setsocksfirewallproxystate "Wi-Fi" off'
@@ -11,18 +11,8 @@ alias tnl='sshuttle 0/0 --dns -vvr'
 alias wgup='wg-quick up wg0'
 alias wgdown='wg-quick down wg0'
 
-#osx
-alias showfiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
-alias hidefiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
-
-# Crashplan
-alias crashplan-port='ssh -L 4200:localhost:4243'
-
 # File sizes for current directory
 alias ducks='du -cksh *'
-
-# Recursively delete `.DS_Store` files
-alias cleands="find . -name '*.DS_Store' -type f -ls -delete"
 
 # syntax highlighting cat
 alias cat=ccat
@@ -30,16 +20,16 @@ alias cat=ccat
 # use forego instead of foreman
 alias foreman=forego
 
-# gitup for gitx because muscle memory
-alias gitx=gitup
-
 # npm exec like bundle exec
 alias npm-exec='PATH=$(npm bin):$PATH'
 # yarn exec like bundle exec
 alias yarn-exec='PATH=$(yarn bin):$PATH'
 
-# kill .DS_Store files
-alias killds='find ./ -iname .DS_Store -delete'
-
 # check for updates to environment
-alias macupdate='cd $HOME && zsh <(curl -q -s https://raw.githubusercontent.com/damonmorgan/environment/master/mac) && killds'
+alias linuxupdate='cd $HOME && zsh <(curl -q -s https://raw.githubusercontent.com/qmee/environment/master/linux)'
+
+#pbcopy & pbpaste aliases
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+
+alias reload!='source ~/.zshrc'
